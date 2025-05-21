@@ -1,0 +1,192 @@
+/* ========= VARIÁVEIS GLOBAIS ========= */
+:root {
+  --primary: #2c90ff;       /* Azul principal para botões e destaques */
+  --accent: #ffb347;        /* Laranja suave para contraste e destaque */
+  --bg-overlay: rgba(0, 0, 0, 0.4); /* Camada escura semi-transparente sobre o vídeo */
+  --card-bg: rgba(30, 30, 60, 0.75); /* Fundo translúcido de cartões */
+  --text: #e0e0e0;          /* Cor clara para textos principais */
+}
+
+/* ========= CORPO DA PÁGINA ========= */
+body {
+  margin: 0;                        /* Remove espaçamento padrão */
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif; /* Fonte moderna e legível */
+  color: var(--text);              /* Usa cor de texto definida na raiz */
+  display: flex;                   /* Usa Flexbox para centralização */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;               /* Ocupa altura total da tela */
+  position: relative;
+  z-index: 0;
+
+  background-color: #0a1a40;       /* Azul escuro para evitar flash branco no carregamento */
+
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+
+  /* Efeitos visuais */
+  backdrop-filter: blur(4px);          /* Desfoque de fundo moderno */
+  -webkit-backdrop-filter: blur(4px);  /* Suporte para Safari */
+
+  /* Suavização de fontes */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-align: center;              /* Centraliza textos */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra leve nos textos */
+
+  /* Animação de entrada */
+  animation: fadeIn 1s ease-in-out 0.5s forwards;
+}
+
+/* ========= ANIMAÇÃO DE APARECIMENTO ========= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);       /* Leve redução inicial */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);          /* Expande para tamanho normal */
+  }
+}
+
+/* ========= VÍDEO DE FUNDO ========= */
+#bg-video {
+  position: fixed;         /* Fixa o vídeo ao fundo */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;       /* Garante que o vídeo cubra toda a tela */
+  z-index: -2;             /* Fica atrás de todos os elementos */
+  pointer-events: none;    /* Permite clicar nos elementos acima */
+}
+
+/* ========= CAMADA ESCURA SOBRE O VÍDEO ========= */
+#bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-overlay); /* Usa variável rgba(0,0,0,0.4) */
+  backdrop-filter: blur(4px);    /* Desfoca o vídeo ao fundo */
+  -webkit-backdrop-filter: blur(4px);
+  z-index: -1;                   /* Fica entre o vídeo e o conteúdo */
+  pointer-events: none;          /* Não interfere nos cliques */
+}
+
+/* ========= TÍTULO PRINCIPAL ========= */
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 5px #000;
+}
+
+/* ========= RELÓGIO ========= */
+.clock {
+  font-size: 20px;
+  margin-bottom: 30px;
+  background-color: var(--card-bg);  /* Fundo translúcido */
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+}
+
+/* ========= FORMULÁRIO DE PESQUISA ========= */
+.search-box {
+  margin-bottom: 30px;
+  background-color: var(--card-bg); /* Cartão escuro translúcido */
+  padding: 15px 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;                 /* Quebra em telas menores */
+  justify-content: center;
+  gap: 10px;                       /* Espaço entre input e botão */
+  box-shadow: 0 0 10px #000;
+}
+
+/* Campo de texto */
+.search-box input[type="text"] {
+  padding: 10px;
+  flex: 1 1 200px;                 /* Cresce até 200px */
+  min-width: 150px;
+  max-width: 100%;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  backdrop-filter: blur(2px);
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-box input[type="text"]:focus {
+  border-color: var(--accent);    /* Laranja ao focar */
+}
+
+/* Botão de envio */
+.search-box input[type="submit"] {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--accent);
+  color: #000;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: background-color 0.3s;
+}
+
+.search-box input[type="submit"]:hover {
+  background-color: #ff9e23;     /* Tom mais forte ao passar o mouse */
+}
+
+.search-box input[type="submit"]:focus-visible {
+  outline: 3px solid var(--accent); /* Acessibilidade: foco visível */
+  outline-offset: 2px;
+}
+
+/* ========= LINKS DE NAVEGAÇÃO ========= */
+.links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;               /* Quebra em colunas menores se precisar */
+  justify-content: center;
+}
+
+/* Estilo para cada link (Google, YouTube, etc.) */
+.link {
+  text-decoration: none;
+  color: white;
+  background-color: var(--primary);
+  padding: 15px 25px;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;                     /* Espaço entre ícone e texto */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.link:hover,
+.link:focus-visible {
+  background-color: #1f70c0;     /* Azul mais escuro no hover */
+  transform: translate3d(0, -2px, 0); /* Efeito de "subida" ao passar o mouse */
+  outline: none;                 /* Remove borda padrão */
+}
+
+.link:focus-visible {
+  outline: 3px solid var(--accent); /* Acessibilidade: foco visível */
+  outline-offset: 2px;
+}
+/* Ícone dentro do link */
+.link i {
+  font-size: 24px;               /* Tamanho do ícone */
+  color: white;                  /* Cor do ícone */
+}
